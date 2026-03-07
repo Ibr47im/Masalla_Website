@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}Masalla Catering Services{% endblock %}
+
+{% block content %}
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <p class="hero-eyebrow">Riyadh, Saudi Arabia · Est. 2022</p>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Redefining <em>Food Services</em><br>for Business &amp; Government
+      </h1>
+      <p class="hero-sub">
+        From institutional catering to cloud kitchens — Masalla delivers quality,
+        sustainability, and culinary excellence across every scale.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#about" class="btn-ghost">Our Story</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Service Lines</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">B2G &amp; B2B</div>
+      <div class="stat-label">Sectors Served</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Eco-Friendly Ops</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Riyadh</div>
+      <div class="stat-label">State-of-the-Art Facility</div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="about-image-wrap reveal">
+      <img
+        class="about-img"
+        src="{{ url_for('static', filename='Img/1 (35).jpg') }}"
+        alt="Masalla kitchen"
+      />
+      <div class="about-accent"></div>
+      <div class="about-badge">Founded<br>Riyadh<br>2022</div>
+    </div>
+    <div class="about-text reveal">
+      <p class="section-eyebrow">Who We Are</p>
+      <h2 class="section-title">A New Standard in <em>Food Innovation</em></h2>
+      <div class="divider"></div>
+      <p>
+        Masalla is a brand-new food CPU based in Riyadh, revolutionizing the B2B and B2G
+        sectors with diverse, world-class food services. Operating from a state-of-the-art
+        central facility, we combine culinary expertise with efficient logistics.
+      </p>
+      <p>
+        Our commitment to quality, sustainability, and innovation makes us a trusted
+        partner for businesses and government entities across the Kingdom.
+      </p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-label">Vision</div>
+          <p>To be the leading provider of innovative, sustainable food services in
+          Riyadh — where eco-friendly excellence is the standard.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">Mission</div>
+          <p>Delivering superior, reliable food services while pushing the boundaries
+          of culinary innovation for every client we serve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="services-header reveal">
+      <div>
+        <p class="section-eyebrow">What We Do</p>
+        <h2 class="section-title">A Spectrum of <em style="color:var(--rose)">Food Solutions</em></h2>
+      </div>
+      <a href="#cta" class="btn-ghost" style="white-space:nowrap">Request a Service</a>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-name">Institutional Catering</div>
+        <p class="service-desc">Nutritious, high-quality meals for schools, hospitals,
+        and large institutions — delivered on time, every time.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-name">Contract Meal Services</div>
+        <p class="service-desc">Long-term meal delivery partnerships for businesses
+        and government entities with diverse dietary requirements.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-name">Events Catering</div>
+        <p class="service-desc">Tailored menus for corporate and government events —
+        from intimate boardroom meetings to major conferences.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-name">Mobile Catering</div>
+        <p class="service-desc">Our mobile kitchen units bring top-quality food to
+        remote sites, outdoor events, and any location.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-name">HORECA Supply</div>
+        <p class="service-desc">Trusted supplier of fresh, frozen, and packaged F&amp;B
+        products for hotels, restaurants, and cafes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-name">Cloud Kitchen Brands</div>
+        <p class="service-desc">Diverse cloud kitchen brands in fast food, sweets, and
+        beverages — delivering B2C across Riyadh via aggregator apps.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">07</div>
+        <div class="service-name">Canteen Operations</div>
+        <p class="service-desc">End-to-end canteen management — from menu planning and
+        prep to service and cleanup for businesses and institutions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">08</div>
+        <div class="service-name">Consultancy</div>
+        <p class="service-desc">Expert guidance on food safety, kitchen efficiency,
+        waste management, and menu planning to exceed industry standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTORS ── -->
+  <section id="sectors">
+    <div class="sectors-inner">
+    <div class="reveal" style="max-width:600px">
+      <p class="section-eyebrow">Who We Serve</p>
+      <h2 class="section-title">Built for <em style="color:var(--rose)">Business</em> &amp; Government</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(26,22,18,0.6);font-size:0.95rem;line-height:1.8;">
+        Masalla is proud to serve both the private and public sectors, with deep
+        understanding of the unique requirements each demands.
+      </p>
+    </div>
+    <div class="partners-eyebrow reveal">Trusted by Leading Organizations</div>
+    <div class="partners-grid reveal">
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/MOE.png') }}" alt="MOE" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/MOEP.png') }}" alt="MOEP" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/KAPSARC.jpg') }}" alt="KAPSARC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/PIF.png') }}" alt="PIF" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/BIAC.png') }}" alt="BIAC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/KAFD.png') }}" alt="KAFD" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Richard attias.jpg') }}" alt="Richard Attias" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/WIPO.png') }}" alt="WIPO" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SAB.jpg') }}" alt="SAB" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Elm.jpg') }}" alt="Elm" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SIRC.png') }}" alt="SIRC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SNB.png') }}" alt="SNB" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SLC.png') }}" alt="SLC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/37 events.png') }}" alt="37 Events" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Sela.jpg') }}" alt="Sela" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Multilem.png') }}" alt="Multilem" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/The Gathering.png') }}" alt="The Gathering" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/NCPD.png') }}" alt="NCPD" /></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">Simple,<em style="color:var(--rose)"> Seamless</em> Onboarding</h2>
+      <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">01</div></div>
+        <div class="step-title">Consultation</div>
+        <p class="step-desc">We start by understanding your organization's needs,
+        scale, dietary requirements, and timeline.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">02</div></div>
+        <div class="step-title">Proposal</div>
+        <p class="step-desc">Our team crafts a tailored service plan and menu proposal
+        with transparent, competitive pricing.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">03</div></div>
+        <div class="step-title">Partnership</div>
+        <p class="step-desc">Once agreed, we integrate seamlessly with your operations
+        and set up reliable delivery schedules.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">04</div></div>
+        <div class="step-title">Ongoing Excellence</div>
+        <p class="step-desc">We continuously monitor quality, gather feedback, and
+        optimize to ensure consistent satisfaction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section id="cta">
+    <div class="cta-inner">
+      <p class="section-eyebrow" style="text-align:center;">Ready to Work Together?</p>
+      <h2 class="cta-title">Let's Build Something <em>Exceptional</em></h2>
+      <p class="cta-sub">
+        Whether you need a long-term contract, a one-time event, or expert consultancy —
+        reach out and we'll craft the perfect solution.
+      </p>
+      <div class="cta-actions">
+        <a href="mailto:hello@masalla.co" class="btn-primary">Email Us Directly</a>
+        <a href="tel:+966557350697" class="btn-ghost">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

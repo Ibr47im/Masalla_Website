@@ -1,0 +1,66 @@
+<!-- ============================================================
+     header.html — Masalla Site Header / Navigation
+     Include this at the top of every page inside <body>
+     ============================================================ -->
+
+<nav id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="{{ url_for('static', filename='logo/Masalla full logo white.png') }}" alt="Masalla" />
+  </a>
+  <ul class="nav-links">
+    {% if lang == 'ar' %}
+    <li><a href="/#about">من نحن</a></li>
+    <li><a href="/#services">خدماتنا</a></li>
+    <li><a href="/#sectors">عملاؤنا</a></li>
+    <li><a href="/#process">كيف نعمل</a></li>
+    <li><a href="/gallery">المعرض</a></li>
+    {% else %}
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#sectors">Clients</a></li>
+    <li><a href="/#process">How It Works</a></li>
+    <li><a href="/gallery">Gallery</a></li>
+    {% endif %}
+  </ul>
+  <div class="nav-actions">
+    <a href="{{ url_for('main.set_lang', lang_code='ar' if lang == 'en' else 'en') }}" class="lang-switch">
+      {{ 'AR' if lang == 'en' else 'EN' }}
+    </a>
+    <a href="/#cta" class="nav-cta">{{ 'احصل على عرض' if lang == 'ar' else 'Get a Quote' }}</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile full-screen nav overlay -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <ul class="mobile-nav-links">
+    {% if lang == 'ar' %}
+    <li><a href="/#about">من نحن</a></li>
+    <li><a href="/#services">خدماتنا</a></li>
+    <li><a href="/#sectors">عملاؤنا</a></li>
+    <li><a href="/#process">كيف نعمل</a></li>
+    <li><a href="/gallery">المعرض</a></li>
+    {% else %}
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#sectors">Clients</a></li>
+    <li><a href="/#process">How It Works</a></li>
+    <li><a href="/gallery">Gallery</a></li>
+    {% endif %}
+  </ul>
+  <div class="mobile-nav-bottom">
+    <a href="/#cta" class="btn-primary">{{ 'احصل على عرض' if lang == 'ar' else 'Get a Quote' }}</a>
+    <a href="{{ url_for('main.set_lang', lang_code='ar' if lang == 'en' else 'en') }}" class="lang-switch-mobile">
+      {{ 'عربي' if lang == 'en' else 'English' }}
+    </a>
+  </div>
+</div>

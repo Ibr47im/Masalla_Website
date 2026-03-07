@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}المعرض — مصلّة{% endblock %}
+
+{% block content %}
+
+  <!-- ── GALLERY HEADER ── -->
+  <section class="gl-header">
+    <div class="gl-header-inner">
+      <p class="section-eyebrow">محفظة بصرية</p>
+      <h1 class="gl-header-title">المعرض</h1>
+      <div class="gl-header-meta">
+        <span class="gl-header-count">83 صورة</span>
+        <div class="gl-header-rule"></div>
+        <span class="gl-header-note">انقر على أي صورة لعرضها بالحجم الكامل</span>
+      </div>
+    </div>
+    <div class="gl-ghost-text" aria-hidden="true">GALLERY</div>
+  </section>
+
+  {% include 'components/gallery_grid.html' %}
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  (() => {
+    const items    = Array.from(document.querySelectorAll('.gl-item'));
+    const lightbox = document.getElementById('gl-lightbox');
+    const lbImg    = lightbox.querySelector('.gl-lb-img');
+    const lbCur    = lightbox.querySelector('.gl-lb-current');
+    const lbTot    = lightbox.querySelector('.gl-lb-total');
+    let current    = 0;
+
+    lbTot.textContent = items.length;
+
+    function show(index) {
+      current = (index + items.length) % items.length;
+      const src = items[current].querySelector('img').src;
+      const alt = items[current].querySelector('img').alt;
+      lbImg.classList.add('gl-lb-fade');
+      setTimeout(() => {
+        lbImg.src = src;
+        lbImg.alt = alt;
+        lbCur.textContent = current + 1;
+        lbImg.classList.remove('gl-lb-fade');
+      }, 180);
+    }
+
+    function open(index) {
+      show(index);
+      lightbox.classList.add('is-open');
+      lightbox.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+      lightbox.querySelector('.gl-lb-close').focus();
+    }
+
+    function close() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((item, i) => item.addEventListener('click', () => open(i)));
+
+    lightbox.querySelector('.gl-lb-prev').addEventListener('click', () => show(current - 1));
+    lightbox.querySelector('.gl-lb-next').addEventListener('click', () => show(current + 1));
+    lightbox.querySelector('.gl-lb-close').addEventListener('click', close);
+    lightbox.querySelector('.gl-lb-backdrop').addEventListener('click', close);
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    // Stagger scroll-reveal
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('gl-item-visible'), i * 40);
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    items.forEach(item => revealObs.observe(item));
+  })();
+</script>
+{% endblock %}

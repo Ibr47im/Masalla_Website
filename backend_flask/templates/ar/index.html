@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}مسلّة — خدمات التغذية{% endblock %}
+
+{% block content %}
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <p class="hero-eyebrow">الرياض، المملكة العربية السعودية · تأسست 2022</p>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        نعيد تعريف <em>خدمات الطعام</em><br>للأعمال والجهات الحكومية
+      </h1>
+      <p class="hero-sub">
+        من التغذية المؤسسية إلى المطابخ السحابية — مسلّة تقدم الجودة
+        والاستدامة والتميز الطهوي على كل المستويات.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">استكشف خدماتنا</a>
+        <a href="#about" class="btn-ghost">قصتنا</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      تمرير للاستكشاف
+    </div>
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-num">+8</div>
+      <div class="stat-label">خطوط خدمة</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">B2G &amp; B2B</div>
+      <div class="stat-label">قطاعات مخدومة</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">عمليات صديقة للبيئة</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">الرياض</div>
+      <div class="stat-label">منشأة متكاملة</div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="about-image-wrap reveal">
+      <img
+        class="about-img"
+        src="{{ url_for('static', filename='Img/1 (35).jpg') }}"
+        alt="مطبخ مسلّة"
+      />
+      <div class="about-accent"></div>
+      <div class="about-badge">تأسست<br>الرياض<br>2022</div>
+    </div>
+    <div class="about-text reveal">
+      <p class="section-eyebrow">من نحن</p>
+      <h2 class="section-title">معيار جديد في <em>ابتكار الطعام</em></h2>
+      <div class="divider"></div>
+      <p>
+        مسلّة هي شركة متخصصة في خدمات الطعام مقرها الرياض، تُحدث ثورة في قطاعَي B2B وB2G
+        من خلال خدمات غذائية متنوعة وعالمية المستوى. نعمل من منشأة مركزية متطورة تجمع
+        بين الخبرة الطهوية والخدمات اللوجستية الفعّالة.
+      </p>
+      <p>
+        التزامنا بالجودة والاستدامة والابتكار يجعلنا شريكاً موثوقاً للشركات
+        والجهات الحكومية في جميع أنحاء المملكة.
+      </p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-label">رؤيتنا</div>
+          <p>أن نكون الرائد في تقديم خدمات الطعام المبتكرة والمستدامة في
+          الرياض — حيث التميز الصديق للبيئة هو المعيار.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">مهمتنا</div>
+          <p>تقديم خدمات غذائية متميزة وموثوقة مع دفع حدود الابتكار الطهوي
+          لكل عميل نخدمه.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="services-header reveal">
+      <div>
+        <p class="section-eyebrow">ما نقدمه</p>
+        <h2 class="section-title">طيف متكامل من <em style="color:var(--rose)">حلول الطعام</em></h2>
+      </div>
+      <a href="#cta" class="btn-ghost" style="white-space:nowrap">اطلب خدمة</a>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-name">التغذية المؤسسية</div>
+        <p class="service-desc">وجبات مغذية وعالية الجودة للمدارس والمستشفيات
+        والمؤسسات الكبرى — في الوقت المناسب، في كل مرة.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-name">خدمات الوجبات التعاقدية</div>
+        <p class="service-desc">شراكات طويلة الأمد لتوصيل الوجبات للشركات
+        والجهات الحكومية مع مراعاة متطلبات غذائية متنوعة.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-name">تقديم الطعام للفعاليات</div>
+        <p class="service-desc">قوائم طعام مخصصة للفعاليات المؤسسية والحكومية —
+        من اجتماعات مجلس الإدارة الصغيرة إلى المؤتمرات الكبرى.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-name">التغذية المتنقلة</div>
+        <p class="service-desc">وحدات المطبخ المتنقلة لدينا تجلب الطعام عالي الجودة
+        إلى المواقع النائية والفعاليات الخارجية وأي مكان.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-name">توريد HORECA</div>
+        <p class="service-desc">مورد موثوق للمنتجات الغذائية الطازجة والمجمدة
+        والمعبأة للفنادق والمطاعم والمقاهي.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-name">علامات المطبخ السحابي</div>
+        <p class="service-desc">علامات مطبخ سحابي متنوعة في الوجبات السريعة والحلويات
+        والمشروبات — توصيل B2C عبر تطبيقات التوصيل في الرياض.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">07</div>
+        <div class="service-name">إدارة الكافيتيريا</div>
+        <p class="service-desc">إدارة متكاملة للكافيتيريا — من تخطيط القوائم
+        والإعداد حتى الخدمة والتنظيف للشركات والمؤسسات.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">08</div>
+        <div class="service-name">الاستشارات</div>
+        <p class="service-desc">إرشادات خبراء في سلامة الغذاء وكفاءة المطبخ
+        وإدارة الهدر وتخطيط القوائم للارتقاء بمعايير الصناعة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTORS ── -->
+  <section id="sectors">
+    <div class="sectors-inner">
+    <div class="reveal" style="max-width:600px">
+      <p class="section-eyebrow">من نخدم</p>
+      <h2 class="section-title">مصممة لـ<em style="color:var(--rose)">الأعمال</em> والحكومة</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(26,22,18,0.6);font-size:0.95rem;line-height:1.8;">
+        تفخر مسلّة بخدمة القطاعين الخاص والعام، مع فهم عميق
+        للمتطلبات الفريدة لكل منهما.
+      </p>
+    </div>
+    <div class="partners-eyebrow reveal">موثوقة من قِبَل المنظمات الرائدة</div>
+    <div class="partners-grid reveal">
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/MOE.png') }}" alt="وزارة التعليم" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/MOEP.png') }}" alt="MOEP" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/KAPSARC.jpg') }}" alt="KAPSARC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/PIF.png') }}" alt="صندوق الاستثمارات العامة" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/BIAC.png') }}" alt="BIAC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/KAFD.png') }}" alt="KAFD" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Richard attias.jpg') }}" alt="Richard Attias" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/WIPO.png') }}" alt="WIPO" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SAB.jpg') }}" alt="SAB" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Elm.jpg') }}" alt="إلم" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SIRC.png') }}" alt="SIRC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SNB.png') }}" alt="SNB" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/SLC.png') }}" alt="SLC" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/37 events.png') }}" alt="37 Events" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Sela.jpg') }}" alt="سيلا" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/Multilem.png') }}" alt="Multilem" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/The Gathering.png') }}" alt="The Gathering" /></div>
+      <div class="partner-cell"><img src="{{ url_for('static', filename='partners/NCPD.png') }}" alt="NCPD" /></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
+      <p class="section-eyebrow">كيف نعمل</p>
+      <h2 class="section-title">إعداد <em style="color:var(--rose)">سلس</em> وبسيط</h2>
+      <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">01</div></div>
+        <div class="step-title">التشاور</div>
+        <p class="step-desc">نبدأ بفهم احتياجات مؤسستك ونطاق العمل
+        والمتطلبات الغذائية والجدول الزمني.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">02</div></div>
+        <div class="step-title">الاقتراح</div>
+        <p class="step-desc">يضع فريقنا خطة خدمة مخصصة واقتراح قائمة طعام
+        بأسعار تنافسية وشفافة.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">03</div></div>
+        <div class="step-title">الشراكة</div>
+        <p class="step-desc">بعد الاتفاق، نتكامل بسلاسة مع عملياتكم
+        ونضع جداول توصيل موثوقة.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap"><div class="step-num">04</div></div>
+        <div class="step-title">التميز المستمر</div>
+        <p class="step-desc">نراقب الجودة باستمرار ونجمع التغذية الراجعة
+        ونُحسّن لضمان رضا دائم.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section id="cta">
+    <div class="cta-inner">
+      <p class="section-eyebrow" style="text-align:center;">هل أنت مستعد للعمل معاً؟</p>
+      <h2 class="cta-title">لنبنِ شيئاً <em>استثنائياً</em></h2>
+      <p class="cta-sub">
+        سواء كنت بحاجة إلى عقد طويل الأمد أو فعالية واحدة أو استشارات متخصصة —
+        تواصل معنا وسنصمم لك الحل الأمثل.
+      </p>
+      <div class="cta-actions">
+        <a href="mailto:hello@masalla.co" class="btn-primary">راسلنا مباشرة</a>
+        <a href="tel:+966557350697" class="btn-ghost">اتصل الآن</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block title %}404 — مسلّة{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* ── 404 Page ── */
+  .e404-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 4rem 6rem;
+    text-align: center;
+    background: var(--ink);
+  }
+
+  .e404-top-rule {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--rose) 50%, transparent 100%);
+    opacity: 0.55;
+  }
+
+  .e404-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 50% 50%,
+      transparent 30%,
+      rgba(12,20,18,0.7) 100%);
+    pointer-events: none;
+  }
+
+  .e404-ghost {
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: clamp(16rem, 42vw, 40rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(196,149,122,0.07);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .e404-content {
+    position: relative;
+    z-index: 2;
+    max-width: 580px;
+  }
+
+  .e404-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 2.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .e404-eyebrow::before,
+  .e404-eyebrow::after {
+    content: '';
+    width: 2.5rem;
+    height: 1px;
+    background: var(--rose);
+    opacity: 0.45;
+  }
+
+  .e404-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6.5vw, 6rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--text);
+    margin-bottom: 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.38s forwards;
+  }
+  .e404-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .e404-divider {
+    width: 3rem;
+    height: 1px;
+    background: rgba(196,149,122,0.35);
+    margin: 2.2rem auto;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.52s forwards;
+  }
+
+  .e404-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-dim);
+    max-width: 400px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .e404-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.78s forwards;
+  }
+
+  .e404-links {
+    position: relative;
+    z-index: 2;
+    margin-top: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.92s forwards;
+  }
+  .e404-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: rgba(237,232,224,0.25);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .e404-links a:hover { color: var(--rose); }
+  .e404-links-sep {
+    width: 1px;
+    height: 1rem;
+    background: rgba(237,232,224,0.12);
+  }
+
+  .e404-meta {
+    position: absolute;
+    bottom: 2.8rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: rgba(237,232,224,0.12);
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.05s forwards;
+  }
+
+  @media (max-width: 640px) {
+    .e404-wrap { padding: 7rem 2rem 5rem; }
+    .e404-actions { flex-direction: column; align-items: stretch; }
+    .e404-actions .btn-primary,
+    .e404-actions .btn-ghost { text-align: center; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <main class="e404-wrap">
+    <div class="e404-top-rule"></div>
+    <div class="e404-vignette"></div>
+    <div class="e404-ghost" aria-hidden="true">404</div>
+
+    <div class="e404-content">
+      <p class="e404-eyebrow">خطأ · 404</p>
+      <h1 class="e404-title">هذه الصفحة<br><em>غادرت المطبخ.</em></h1>
+      <div class="e404-divider"></div>
+      <p class="e404-sub">
+        الصفحة التي تبحث عنها ليست في قائمتنا.
+        دعنا نرشدك إلى شيء استثنائي.
+      </p>
+      <div class="e404-actions">
+        <a href="/" class="btn-primary">العودة للرئيسية</a>
+        <a href="/gallery" class="btn-ghost">عرض المعرض</a>
+      </div>
+    </div>
+
+    <div class="e404-links">
+      <a href="/#about">من نحن</a>
+      <div class="e404-links-sep"></div>
+      <a href="/#services">خدماتنا</a>
+      <div class="e404-links-sep"></div>
+      <a href="/#sectors">عملاؤنا</a>
+      <div class="e404-links-sep"></div>
+      <a href="/#cta">تواصل معنا</a>
+    </div>
+
+    <span class="e404-meta">الرياض · المملكة العربية السعودية · تأسست 2022</span>
+  </main>
+{% endblock %}

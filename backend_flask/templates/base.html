@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo/Masalla Small Logo.png') }}" />
+  <title>{% block title %}Masalla{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  {% include 'components/header.html' %}
+
+  {% block content %}{% endblock %}
+
+  {% include 'components/footer.html' %}
+
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+  {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

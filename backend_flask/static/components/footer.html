@@ -1,0 +1,103 @@
+<!-- ============================================================
+     footer.html — Masalla Site Footer
+     Include this at the bottom of every page, before </body>
+     ============================================================ -->
+
+<footer>
+  <div class="footer-inner">
+
+    <!-- ── TOP GRID ── -->
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="{{ url_for('static', filename='logo/Masalla full logo white.png') }}" alt="Masalla" />
+        </a>
+        <p class="footer-tagline">
+          {% if lang == 'ar' %}
+          إعادة تعريف خدمات الطعام<br>للأعمال والحكومة في المملكة.
+          {% else %}
+          Redefining food services for business<br>& government across the Kingdom.
+          {% endif %}
+        </p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/dinesamrah/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@dinesamrah" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/masalla" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Explore -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">{{ 'استكشف' if lang == 'ar' else 'Explore' }}</h4>
+        <ul>
+          {% if lang == 'ar' %}
+          <li><a href="/#about">من نحن</a></li>
+          <li><a href="/#services">خدماتنا</a></li>
+          <li><a href="/#sectors">قطاعاتنا</a></li>
+          <li><a href="/#process">كيف نعمل</a></li>
+          {% else %}
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#sectors">Sectors</a></li>
+          <li><a href="/#process">How It Works</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">{{ 'تواصل معنا' if lang == 'ar' else 'Contact' }}</h4>
+        <ul>
+          <li><a href="mailto:hello@masalla.co">hello@masalla.co</a></li>
+          <li><a href="tel:+966557350697">+966 55 735 0697</a></li>
+          <li>{{ 'الرياض، المملكة العربية السعودية' if lang == 'ar' else 'Riyadh, Saudi Arabia' }}</li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <div class="footer-col footer-cta-col">
+        <h4 class="footer-col-title">{{ 'هل أنت مستعد للشراكة؟' if lang == 'ar' else 'Ready to Partner?' }}</h4>
+        <p class="footer-cta-text">{{ 'لنبنِ شيئاً استثنائياً معاً.' if lang == 'ar' else "Let's build something exceptional together." }}</p>
+        <a href="/#cta" class="btn-primary">{{ 'احصل على عرض' if lang == 'ar' else 'Get a Quote' }}</a>
+      </div>
+
+    </div>
+
+    <!-- ── DIVIDER ── -->
+    <div class="footer-divider"></div>
+
+    <!-- ── BOTTOM BAR ── -->
+    <div class="footer-bottom">
+      <span class="footer-copy">
+        {% if lang == 'ar' %}
+        © 2026 مسلّة. جميع الحقوق محفوظة.
+        {% else %}
+        © 2026 Masalla. All rights reserved.
+        {% endif %}
+      </span>
+      <span class="footer-origin">
+        {{ 'الرياض · المملكة العربية السعودية · تأسست 2022' if lang == 'ar' else 'Riyadh · Saudi Arabia · Est. 2022' }}
+      </span>
+    </div>
+
+  </div>
+</footer>
