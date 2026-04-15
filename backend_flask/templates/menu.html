@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Today's Menu · Masalla{% endblock %}
+
+{% block content %}
+<section class="menu-page">
+
+  <header class="menu-hero">
+    <p class="menu-eyebrow">Today's Selection &nbsp;·&nbsp; قائمة اليوم</p>
+    <h1 class="menu-title">
+      <span class="en">{{ weekday_en }}</span>
+      <span class="sep">·</span>
+      <span class="ar">{{ weekday_ar }}</span>
+    </h1>
+    <div class="menu-divider"></div>
+  </header>
+
+  {% for section in sections %}
+  <section class="menu-section">
+    <header class="menu-section-head">
+      <h2 class="menu-section-title en">{{ section.label_en }}</h2>
+      <h2 class="menu-section-title ar">{{ section.label_ar }}</h2>
+    </header>
+    <ul class="menu-items">
+      {% for dish in section.dishes %}
+      <li class="menu-item">
+        <span class="menu-item-en">{{ dish.name_en }}</span>
+        <span class="menu-item-ar">{{ dish.name_ar }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+
+</section>
+{% endblock %}

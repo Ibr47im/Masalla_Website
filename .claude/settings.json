@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.google.com)",
+      "Bash(python -c \"from urllib.request import urlopen; print\\(urlopen\\('https://docs.google.com/spreadsheets/d/e/2PACX-1vQH1WpksMmLcKaHnKDQf6dZrh413giKEIqGzaOIknXrHGzccOzrKJLJIxdnvsXlCQMvnJ6DdyP089hN/pub?output=csv'\\).read\\(\\).decode\\('utf-8'\\)\\)\")",
+      "Bash(python -c \"import sys, io; sys.stdout = io.TextIOWrapper\\(sys.stdout.buffer, encoding='utf-8'\\); from urllib.request import urlopen; print\\(urlopen\\('https://docs.google.com/spreadsheets/d/e/2PACX-1vQH1WpksMmLcKaHnKDQf6dZrh413giKEIqGzaOIknXrHGzccOzrKJLJIxdnvsXlCQMvnJ6DdyP089hN/pub?output=csv'\\).read\\(\\).decode\\('utf-8'\\)\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python run.py)",
+      "Bash(netstat -ano)",
+      "Bash(ipconfig)",
+      "Bash(taskkill //PID 1708 //F)",
+      "Bash(taskkill //IM python.exe //F)",
+      "Bash(netsh advfirewall *)"
+    ]
+  }
+}

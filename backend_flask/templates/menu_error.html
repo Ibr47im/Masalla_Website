@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu Unavailable · Masalla{% endblock %}
+
+{% block content %}
+<section class="weekend-closed">
+  <div class="columns">
+    <div class="col en">
+      <p class="eyebrow">A Moment, Please</p>
+      <h1>Menu Unavailable.</h1>
+      <p>We couldn't load today's selection just now. Please try again in a moment.</p>
+      {% if error %}<p class="signoff" style="font-size:0.8rem;opacity:0.5;">{{ error }}</p>{% endif %}
+    </div>
+    <div class="col ar">
+      <p class="eyebrow">لحظةً من فضلكم</p>
+      <h1>القائمة غير متاحة.</h1>
+      <p>تعذّر علينا تحميل قائمة اليوم في هذه اللحظة. يُرجى المحاولة بعد قليل.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

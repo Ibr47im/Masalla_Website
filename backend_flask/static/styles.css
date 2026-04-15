@@ -891,3 +891,232 @@ footer {
 /* Footer */
 [dir="rtl"] .footer-col { text-align: right; }
 [dir="rtl"] .footer-tagline { text-align: right; }
+
+/* ============================================================
+   DAILY MENU PAGE  (/menu)
+   Bilingual: EN flush-left (LTR) · AR flush-right (RTL)
+   Desktop = two columns; mobile = stacked per-dish
+   ============================================================ */
+
+.menu-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 9rem 2rem 6rem;
+  color: var(--text);
+  background: var(--ink);
+}
+
+.menu-hero {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+.menu-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin: 0 0 1.25rem;
+}
+.menu-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  color: var(--text);
+}
+.menu-title .en { direction: ltr; }
+.menu-title .ar {
+  direction: rtl;
+  font-family: 'Amiri', serif;
+  font-style: normal;
+}
+.menu-title .sep {
+  color: var(--rose);
+  font-style: normal;
+  font-size: 0.6em;
+  opacity: 0.7;
+}
+.menu-divider {
+  width: 72px;
+  height: 1px;
+  background: var(--rose);
+  margin: 2rem auto 0;
+  opacity: 0.6;
+}
+
+.menu-section {
+  margin-bottom: 3.5rem;
+}
+.menu-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+.menu-section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  margin: 0;
+  color: var(--rose);
+  letter-spacing: 0.01em;
+}
+.menu-section-title.en { direction: ltr; text-align: left; }
+.menu-section-title.ar {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Amiri', serif;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2.5rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px dotted rgba(196, 149, 122, 0.18);
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-item-en {
+  flex: 1;
+  direction: ltr;
+  text-align: left;
+  color: var(--text);
+}
+.menu-item-ar {
+  flex: 1;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Tajawal', sans-serif;
+  color: var(--text);
+}
+
+/* Mobile: stack per-dish so each name gets full width */
+@media (max-width: 767px) {
+  .menu-page { padding: 7rem 1.25rem 4rem; }
+  .menu-hero { margin-bottom: 3rem; }
+  .menu-title { gap: 0.75rem; }
+
+  .menu-section { margin-bottom: 2.75rem; }
+  .menu-section-head {
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: stretch;
+    padding-bottom: 0.65rem;
+    margin-bottom: 1.1rem;
+  }
+  .menu-section-title.en { text-align: left; }
+  .menu-section-title.ar { text-align: right; }
+
+  .menu-item {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.85rem 0;
+    font-size: 1rem;
+  }
+  .menu-item-en,
+  .menu-item-ar { flex: none; }
+}
+
+/* ============================================================
+   WEEKEND CLOSED PAGE  (Fri / Sat)
+   Bilingual two-column intermission notice
+   ============================================================ */
+
+.weekend-closed {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10rem 2rem 6rem;
+  color: var(--text);
+  background: var(--ink);
+}
+.weekend-closed .columns {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.weekend-closed .col {
+  flex: 1;
+  max-width: 420px;
+}
+.weekend-closed .col.en {
+  direction: ltr;
+  text-align: left;
+}
+.weekend-closed .col.ar {
+  direction: rtl;
+  text-align: right;
+}
+.weekend-closed .eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin: 0 0 1.25rem;
+}
+.weekend-closed .col.ar .eyebrow {
+  font-family: 'Tajawal', sans-serif;
+  letter-spacing: 0.15em;
+}
+.weekend-closed h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--text);
+  margin: 0 0 1.75rem;
+}
+.weekend-closed .col.ar h1 {
+  font-family: 'Amiri', serif;
+  font-style: normal;
+}
+.weekend-closed p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin: 0 0 1.15rem;
+  color: rgba(237, 232, 224, 0.82);
+}
+.weekend-closed .col.ar p {
+  font-family: 'Tajawal', sans-serif;
+}
+.weekend-closed .signoff {
+  font-style: italic;
+  color: var(--rose-light);
+  margin-top: 1.5rem;
+}
+.weekend-closed .col.ar .signoff { font-style: normal; }
+
+@media (max-width: 767px) {
+  .weekend-closed {
+    padding: 7rem 1.5rem 4rem;
+  }
+  .weekend-closed .columns {
+    flex-direction: column;
+    gap: 3rem;
+    align-items: stretch;
+  }
+  .weekend-closed .col { max-width: none; }
+}

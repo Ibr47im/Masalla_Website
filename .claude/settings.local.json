@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.dinesamrah.com)",
+      "WebSearch",
+      "Bash(python build_pptx.py)",
+      "Bash(taskkill /IM POWERPNT.EXE /F)",
+      "Bash(python build_pptx_ar.py)"
+    ]
+  }
+}
