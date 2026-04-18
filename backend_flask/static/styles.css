@@ -935,7 +935,7 @@ footer {
 .menu-page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 3rem 2rem 6rem;
+  padding: 6rem 2rem 6rem;
   color: var(--text);
   background: var(--ink);
 }
@@ -1061,7 +1061,7 @@ footer {
 
 /* Mobile: stack per-dish so each name gets full width */
 @media (max-width: 767px) {
-  .menu-page { padding: 2rem 1.25rem 4rem; }
+  .menu-page { padding: 4rem 1.25rem 4rem; }
   .menu-hero { margin-bottom: 3rem; }
   .menu-title { gap: 0.75rem; }
 
@@ -1094,7 +1094,7 @@ footer {
 .weekend-closed {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 5rem 2rem 6rem;
+  padding: 7rem 2rem 6rem;
   color: var(--text);
   background: var(--ink);
 }
@@ -1160,7 +1160,7 @@ footer {
 
 @media (max-width: 767px) {
   .weekend-closed {
-    padding: 3rem 1.5rem 4rem;
+    padding: 5rem 1.5rem 4rem;
   }
   .weekend-closed .columns {
     flex-direction: column;
