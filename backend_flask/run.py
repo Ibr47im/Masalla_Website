@@ -283,7 +283,7 @@ def github_webhook():
         return jsonify({"ok": True, "skipped": "not main branch"}), 200
 
     subprocess.Popen(
-        ["sudo", DEPLOY_SCRIPT],
+        ["/usr/bin/sudo", DEPLOY_SCRIPT],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
