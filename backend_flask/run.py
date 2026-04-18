@@ -1,10 +1,12 @@
 import csv
+import html
 import io
+import json
 import time
 from datetime import datetime, timezone, timedelta
 from urllib.request import urlopen, Request
 
-from flask import Flask, Blueprint, render_template, session, redirect, request
+from flask import Flask, Blueprint, render_template, session, redirect, request, jsonify
 from jinja2 import ChoiceLoader, FileSystemLoader, TemplateNotFound
 
 app = Flask(__name__)
@@ -168,6 +170,83 @@ def menu():
         weekday_en=weekday_en,
         weekday_ar=weekday_ar,
     )
+
+# ---------------------------------------------------------------------------
+# Review submission → Google Apps Script webhook
+# ---------------------------------------------------------------------------
+
+REVIEW_SCRIPT_URL = (
+    "https://script.google.com/macros/s/AKfycbxDPfM48lv46UCPl4VNdSRrbc"
+    "WvGFVeY14AmoiskyF2m3IlmR8NQE0aubPLVFWbfWtk/exec"
+)
+
+RATING_FIELDS = ("rating_service", "rating_heat", "rating_taste", "rating_overall")
+
+_review_limits = {}
+REVIEW_RATE_LIMIT = 10
+REVIEW_RATE_WINDOW = 3600
+
+
+def _check_rate_limit(ip):
+    now = time.time()
+    entries = _review_limits.get(ip, [])
+    entries = [t for t in entries if now - t < REVIEW_RATE_WINDOW]
+    if len(entries) >= REVIEW_RATE_LIMIT:
+        return False
+    entries.append(now)
+    _review_limits[ip] = entries
+    return True
+
+
+@main.route('/menu/review', methods=['POST'])
+def submit_review():
+    if not request.is_json:
+        return jsonify({"error": "Invalid content type"}), 400
+
+    ip = request.remote_addr or "unknown"
+    if not _check_rate_limit(ip):
+        return jsonify({"error": "Too many submissions. Please try later."}), 429
+
+    data = request.get_json(silent=True) or {}
+
+    ratings = {}
+    for field in RATING_FIELDS:
+        val = data.get(field)
+        if not isinstance(val, int) or not 1 <= val <= 5:
+            return jsonify({"error": f"All ratings are required (1–5)"}), 400
+        ratings[field] = val
+
+    comment = html.escape(str(data.get("comment", ""))[:500]).strip()
+    name = html.escape(str(data.get("name", ""))[:100]).strip()
+
+    now = datetime.now(RIYADH)
+    weekday = now.strftime('%A').lower()
+
+    payload = json.dumps({
+        "timestamp": now.isoformat(),
+        "weekday": weekday,
+        **ratings,
+        "comment": comment,
+        "name": name,
+    }).encode("utf-8")
+
+    try:
+        req = Request(
+            REVIEW_SCRIPT_URL,
+            data=payload,
+            headers={
+                "Content-Type": "application/json",
+                "User-Agent": "Masalla-Menu/1.0",
+            },
+            method="POST",
+        )
+        with urlopen(req, timeout=10) as resp:
+            resp.read()
+    except Exception:
+        return jsonify({"error": "Could not save review. Please try again."}), 502
+
+    return jsonify({"ok": True}), 201
+
 
 @main.route('/set_lang/<lang_code>')
 def set_lang(lang_code):

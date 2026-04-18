@@ -1120,3 +1120,288 @@ footer {
   }
   .weekend-closed .col { max-width: none; }
 }
+
+/* ============================================================
+   REVIEW CTA + MODAL
+   ============================================================ */
+
+/* CTA button at bottom of menu */
+.review-cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+.review-cta .menu-divider { margin-bottom: 2rem; }
+.review-cta-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--text-dim);
+  margin: 0 0 1.25rem;
+}
+.review-cta-text .ar {
+  font-family: 'Amiri', serif;
+  font-style: normal;
+}
+.btn-review {
+  display: inline-block;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--rose);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-review:hover {
+  background: var(--rose-light);
+  transform: translateY(-1px);
+}
+.btn-review .ar {
+  font-family: 'Tajawal', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* Modal overlay */
+.review-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(12, 20, 18, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.review-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal card */
+.review-modal {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  max-width: 440px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: transform 0.3s;
+}
+.review-overlay.active .review-modal {
+  transform: translateY(0);
+}
+
+/* Close button */
+.review-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.75rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.review-close:hover { color: var(--text); }
+
+/* Modal title */
+.review-modal-title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--text);
+  margin: 0 0 1.75rem;
+}
+.review-modal-title .ar {
+  font-family: 'Amiri', serif;
+  font-style: normal;
+}
+.review-modal-title .sep { color: var(--rose); opacity: 0.6; }
+
+/* Rating questions */
+.rating-question {
+  margin-bottom: 1.25rem;
+}
+.rating-label {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--silver);
+  text-align: center;
+  margin: 0 0 0.5rem;
+}
+.rating-label .ar {
+  font-family: 'Tajawal', sans-serif;
+}
+.rating-label .sep { color: var(--rose); opacity: 0.5; font-size: 0.75em; }
+
+/* Star rating */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+}
+.star {
+  font-size: 1.8rem;
+  color: var(--raised);
+  cursor: pointer;
+  transition: color 0.15s, transform 0.15s;
+  user-select: none;
+}
+.star:hover { transform: scale(1.15); }
+.star.active { color: var(--rose); }
+
+/* Inputs */
+.review-input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--ink);
+  border: 1px solid var(--border);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.review-input::placeholder {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.review-input:focus {
+  border-color: var(--rose);
+}
+
+/* Submit button */
+.btn-submit-review {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--rose);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn-submit-review:hover { background: var(--rose-light); }
+.btn-submit-review:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.btn-submit-review .ar {
+  font-family: 'Tajawal', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* Status message */
+.review-status {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  margin: 0.75rem 0 0;
+  min-height: 1.2em;
+}
+.review-status.success { color: #8cbfa0; }
+.review-status.error { color: #d48a8a; }
+
+/* Form shrink-out + thank-you transition */
+.review-form-content {
+  transition: opacity 0.35s, transform 0.4s;
+}
+.review-form-content.shrink-out {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+
+.review-thankyou {
+  display: none;
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+.review-thankyou.active {
+  display: block;
+  animation: thankyou-in 0.5s ease forwards;
+}
+
+@keyframes thankyou-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.thankyou-check {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.75rem;
+}
+.checkmark-svg {
+  width: 100%;
+  height: 100%;
+}
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: circle-draw 0.6s ease 0.2s forwards;
+}
+.checkmark-path {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: check-draw 0.35s ease 0.65s forwards;
+}
+
+@keyframes circle-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.thankyou-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.75rem;
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+.thankyou-title .ar {
+  font-family: 'Amiri', serif;
+  font-style: normal;
+}
+.thankyou-title .sep { color: var(--rose); opacity: 0.6; }
+.thankyou-sub {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+.thankyou-sub .ar { font-family: 'Tajawal', sans-serif; }
+.thankyou-sub .sep { color: var(--rose); opacity: 0.4; font-size: 0.8em; }
+
+@media (max-width: 767px) {
+  .review-modal {
+    padding: 2rem 1.25rem;
+    width: 95%;
+  }
+  .star { font-size: 2.5rem; }
+  .thankyou-check { width: 60px; height: 60px; }
+}

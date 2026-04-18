@@ -32,5 +32,281 @@
   </section>
   {% endfor %}
 
+  <div class="review-cta">
+    <div class="menu-divider"></div>
+    <p class="review-cta-text">
+      <span class="en">How was your meal?</span>
+      <span class="sep">&nbsp;·&nbsp;</span>
+      <span class="ar">كيف كانت وجبتك؟</span>
+    </p>
+    <button class="btn-review" id="btn-open-review">
+      <span class="en">Leave a Review</span>
+      <span class="sep">&nbsp;·&nbsp;</span>
+      <span class="ar">شاركنا رأيك</span>
+    </button>
+  </div>
+
 </section>
+
+<!-- Review modal -->
+<div class="review-overlay" id="review-overlay" aria-hidden="true">
+  <div class="review-modal">
+    <button class="review-close" id="review-close" aria-label="Close">&times;</button>
+
+    <div class="review-form-content" id="review-form-content">
+    <p class="review-modal-title">
+      <span class="en">Your Feedback</span>
+      <span class="sep">&nbsp;·&nbsp;</span>
+      <span class="ar">رأيك يهمّنا</span>
+    </p>
+
+    <!-- Q1: Service -->
+    <div class="rating-question">
+      <p class="rating-label">
+        <span class="en">How was the service?</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">كيف كانت الخدمة؟</span>
+      </p>
+      <div class="star-rating" data-field="rating_service">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+    </div>
+
+    <!-- Q2: Food heat -->
+    <div class="rating-question">
+      <p class="rating-label">
+        <span class="en">How was the food temperature?</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">ما رأيك بحرارة الطعام؟</span>
+      </p>
+      <div class="star-rating" data-field="rating_heat">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+    </div>
+
+    <!-- Q3: Taste -->
+    <div class="rating-question">
+      <p class="rating-label">
+        <span class="en">How was the taste?</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">كيف كان طعم الأكل؟</span>
+      </p>
+      <div class="star-rating" data-field="rating_taste">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+    </div>
+
+    <!-- Q4: Overall -->
+    <div class="rating-question">
+      <p class="rating-label">
+        <span class="en">Overall rating</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">التقييم العام</span>
+      </p>
+      <div class="star-rating" data-field="rating_overall">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+    </div>
+
+    <!-- Comment -->
+    <div class="rating-question">
+      <p class="rating-label">
+        <span class="en">We're happy to hear more from you</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">يسعدنا سماع المزيد منك</span>
+      </p>
+      <textarea class="review-input" id="review-comment" rows="3"
+        placeholder="Your thoughts (optional) · أفكارك (اختياري)"
+        maxlength="500"></textarea>
+    </div>
+
+    <!-- Name -->
+    <input class="review-input" id="review-name" type="text"
+      placeholder="Your name (optional) · اسمك (اختياري)"
+      maxlength="100" />
+
+    <!-- Submit -->
+    <button class="btn-submit-review" id="btn-submit-review">
+      <span class="en">Submit</span>
+      <span class="sep">&nbsp;·&nbsp;</span>
+      <span class="ar">إرسال</span>
+    </button>
+
+    <!-- Status messages (errors only now) -->
+    <p class="review-status" id="review-status"></p>
+    </div><!-- /review-form-content -->
+
+    <!-- Thank you state (hidden until submit success) -->
+    <div class="review-thankyou" id="review-thankyou">
+      <div class="thankyou-check">
+        <svg viewBox="0 0 52 52" class="checkmark-svg">
+          <circle cx="26" cy="26" r="24" fill="none" stroke="var(--rose)" stroke-width="1.5" class="checkmark-circle"/>
+          <path fill="none" stroke="var(--rose)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M15 27l7 7 15-15" class="checkmark-path"/>
+        </svg>
+      </div>
+      <p class="thankyou-title">
+        <span class="en">Thank You!</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">شكراً لك!</span>
+      </p>
+      <p class="thankyou-sub">
+        <span class="en">Your feedback means the world to us.</span>
+        <span class="sep">&nbsp;·&nbsp;</span>
+        <span class="ar">رأيك يعني لنا الكثير.</span>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function () {
+  var overlay = document.getElementById('review-overlay');
+  var btnOpen = document.getElementById('btn-open-review');
+  var btnClose = document.getElementById('review-close');
+  var btnSubmit = document.getElementById('btn-submit-review');
+  var commentEl = document.getElementById('review-comment');
+  var nameEl = document.getElementById('review-name');
+  var statusEl = document.getElementById('review-status');
+
+  var formContent = document.getElementById('review-form-content');
+  var thankyou = document.getElementById('review-thankyou');
+  var ratingGroups = document.querySelectorAll('.star-rating');
+  var ratings = {};
+  var submitting = false;
+
+  function openModal() {
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btnOpen.addEventListener('click', openModal);
+  btnClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  function renderStars(group, val) {
+    var stars = group.querySelectorAll('.star');
+    for (var i = 0; i < stars.length; i++) {
+      stars[i].classList.toggle('active', i < val);
+    }
+  }
+
+  ratingGroups.forEach(function (group) {
+    var field = group.dataset.field;
+    ratings[field] = 0;
+
+    group.addEventListener('click', function (e) {
+      var star = e.target.closest('.star');
+      if (!star) return;
+      ratings[field] = parseInt(star.dataset.value, 10);
+      renderStars(group, ratings[field]);
+    });
+    group.addEventListener('mouseover', function (e) {
+      var star = e.target.closest('.star');
+      if (star) renderStars(group, parseInt(star.dataset.value, 10));
+    });
+    group.addEventListener('mouseleave', function () {
+      renderStars(group, ratings[field]);
+    });
+  });
+
+  function resetForm() {
+    ratingGroups.forEach(function (group) {
+      ratings[group.dataset.field] = 0;
+      renderStars(group, 0);
+    });
+    commentEl.value = '';
+    nameEl.value = '';
+    statusEl.textContent = '';
+    statusEl.className = 'review-status';
+  }
+
+  btnSubmit.addEventListener('click', function () {
+    if (submitting) return;
+
+    var allRated = true;
+    for (var key in ratings) {
+      if (ratings[key] === 0) { allRated = false; break; }
+    }
+    if (!allRated) {
+      statusEl.textContent = 'Please rate all questions · الرجاء تقييم جميع الأسئلة';
+      statusEl.className = 'review-status error';
+      return;
+    }
+
+    submitting = true;
+    btnSubmit.disabled = true;
+    statusEl.textContent = '';
+
+    var payload = {
+      rating_service: ratings.rating_service,
+      rating_heat: ratings.rating_heat,
+      rating_taste: ratings.rating_taste,
+      rating_overall: ratings.rating_overall,
+      comment: commentEl.value.trim(),
+      name: nameEl.value.trim()
+    };
+
+    fetch('/menu/review', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, data: d }; }); })
+      .then(function (result) {
+        if (result.ok) {
+          formContent.classList.add('shrink-out');
+          setTimeout(function () {
+            formContent.style.display = 'none';
+            thankyou.classList.add('active');
+          }, 400);
+          setTimeout(function () {
+            closeModal();
+            // Reset everything for next use
+            formContent.classList.remove('shrink-out');
+            formContent.style.display = '';
+            thankyou.classList.remove('active');
+            resetForm();
+          }, 3000);
+        } else {
+          statusEl.textContent = result.data.error || 'Something went wrong';
+          statusEl.className = 'review-status error';
+        }
+      })
+      .catch(function () {
+        statusEl.textContent = 'Network error. Please try again.';
+        statusEl.className = 'review-status error';
+      })
+      .finally(function () {
+        submitting = false;
+        btnSubmit.disabled = false;
+      });
+  });
+})();
+</script>
 {% endblock %}
