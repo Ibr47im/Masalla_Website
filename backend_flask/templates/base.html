@@ -15,7 +15,7 @@
 
   {% block content %}{% endblock %}
 
-  {% include 'components/footer.html' %}
+  {% block footer %}{% include 'components/footer.html' %}{% endblock %}
 
   <script src="{{ url_for('static', filename='main.js') }}"></script>
   {% block extra_scripts %}{% endblock %}

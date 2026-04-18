@@ -2,6 +2,8 @@
 
 {% block title %}Today's Menu · Masalla{% endblock %}
 
+{% block footer %}{% endblock %}
+
 {% block content %}
 <section class="menu-page">
 
@@ -35,14 +37,14 @@
   <div class="review-cta">
     <div class="menu-divider"></div>
     <p class="review-cta-text">
-      <span class="en">How was your meal?</span>
+      <span class="en">Share your feedback</span>
       <span class="sep">&nbsp;·&nbsp;</span>
-      <span class="ar">كيف كانت وجبتك؟</span>
+      <span class="ar">شاركنا تقييمك</span>
     </p>
     <button class="btn-review" id="btn-open-review">
-      <span class="en">Leave a Review</span>
+      <span class="en">Submit Feedback</span>
       <span class="sep">&nbsp;·&nbsp;</span>
-      <span class="ar">شاركنا رأيك</span>
+      <span class="ar">إرسال تقييم</span>
     </button>
   </div>
 
@@ -55,17 +57,17 @@
 
     <div class="review-form-content" id="review-form-content">
     <p class="review-modal-title">
-      <span class="en">Your Feedback</span>
+      <span class="en">Feedback</span>
       <span class="sep">&nbsp;·&nbsp;</span>
-      <span class="ar">رأيك يهمّنا</span>
+      <span class="ar">التقييم</span>
     </p>
 
     <!-- Q1: Service -->
     <div class="rating-question">
       <p class="rating-label">
-        <span class="en">How was the service?</span>
+        <span class="en">Service Quality</span>
         <span class="sep">&nbsp;·&nbsp;</span>
-        <span class="ar">كيف كانت الخدمة؟</span>
+        <span class="ar">جودة الخدمة</span>
       </p>
       <div class="star-rating" data-field="rating_service">
         <span class="star" data-value="1">&#9733;</span>
@@ -79,9 +81,9 @@
     <!-- Q2: Food heat -->
     <div class="rating-question">
       <p class="rating-label">
-        <span class="en">How was the food temperature?</span>
+        <span class="en">Food Temperature</span>
         <span class="sep">&nbsp;·&nbsp;</span>
-        <span class="ar">ما رأيك بحرارة الطعام؟</span>
+        <span class="ar">حرارة الطعام</span>
       </p>
       <div class="star-rating" data-field="rating_heat">
         <span class="star" data-value="1">&#9733;</span>
@@ -95,9 +97,9 @@
     <!-- Q3: Taste -->
     <div class="rating-question">
       <p class="rating-label">
-        <span class="en">How was the taste?</span>
+        <span class="en">Taste</span>
         <span class="sep">&nbsp;·&nbsp;</span>
-        <span class="ar">كيف كان طعم الأكل؟</span>
+        <span class="ar">النكهة</span>
       </p>
       <div class="star-rating" data-field="rating_taste">
         <span class="star" data-value="1">&#9733;</span>
@@ -111,9 +113,9 @@
     <!-- Q4: Overall -->
     <div class="rating-question">
       <p class="rating-label">
-        <span class="en">Overall rating</span>
+        <span class="en">Overall Experience</span>
         <span class="sep">&nbsp;·&nbsp;</span>
-        <span class="ar">التقييم العام</span>
+        <span class="ar">التجربة العامة</span>
       </p>
       <div class="star-rating" data-field="rating_overall">
         <span class="star" data-value="1">&#9733;</span>
@@ -127,18 +129,18 @@
     <!-- Comment -->
     <div class="rating-question">
       <p class="rating-label">
-        <span class="en">We're happy to hear more from you</span>
+        <span class="en">Additional Comments</span>
         <span class="sep">&nbsp;·&nbsp;</span>
-        <span class="ar">يسعدنا سماع المزيد منك</span>
+        <span class="ar">ملاحظات إضافية</span>
       </p>
       <textarea class="review-input" id="review-comment" rows="3"
-        placeholder="Your thoughts (optional) · أفكارك (اختياري)"
+        placeholder="Comments (optional) · ملاحظات (اختياري)"
         maxlength="500"></textarea>
     </div>
 
     <!-- Name -->
     <input class="review-input" id="review-name" type="text"
-      placeholder="Your name (optional) · اسمك (اختياري)"
+      placeholder="Name (optional) · الاسم (اختياري)"
       maxlength="100" />
 
     <!-- Submit -->
