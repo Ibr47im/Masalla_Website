@@ -153,10 +153,18 @@ def index():
 def gallery():
     return render_template(f'{get_lang()}/gallery.html')
 
+def _effective_weekday(now):
+    """Menu rollover: Saturday 20:00+ shows Sunday's menu."""
+    weekday = now.strftime('%A').lower()
+    if weekday == 'saturday' and now.hour >= 20:
+        return 'sunday'
+    return weekday
+
+
 @main.route('/menu')
 def menu():
     now = datetime.now(RIYADH)
-    weekday = now.strftime('%A').lower()
+    weekday = _effective_weekday(now)
 
     if weekday in ('friday', 'saturday'):
         return render_template('weekend_closed.html')
