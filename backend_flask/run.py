@@ -1,7 +1,11 @@
 import csv
+import hashlib
+import hmac
 import html
 import io
 import json
+import os
+import subprocess
 import time
 from datetime import datetime, timezone, timedelta
 from urllib.request import urlopen, Request
@@ -246,6 +250,44 @@ def submit_review():
         return jsonify({"error": "Could not save review. Please try again."}), 502
 
     return jsonify({"ok": True}), 201
+
+
+# ---------------------------------------------------------------------------
+# GitHub webhook → auto-deploy on push to main
+# ---------------------------------------------------------------------------
+
+GITHUB_WEBHOOK_SECRET = os.environ.get("GITHUB_WEBHOOK_SECRET", "")
+DEPLOY_SCRIPT = "/opt/masalla/deploy.sh"
+
+
+@main.route('/webhook/github', methods=['POST'])
+def github_webhook():
+    if not GITHUB_WEBHOOK_SECRET:
+        return jsonify({"error": "Webhook not configured"}), 503
+
+    signature = request.headers.get("X-Hub-Signature-256", "")
+    if not signature.startswith("sha256="):
+        return jsonify({"error": "Missing signature"}), 401
+
+    expected = "sha256=" + hmac.new(
+        GITHUB_WEBHOOK_SECRET.encode(),
+        request.get_data(),
+        hashlib.sha256,
+    ).hexdigest()
+
+    if not hmac.compare_digest(expected, signature):
+        return jsonify({"error": "Invalid signature"}), 401
+
+    payload = request.get_json(silent=True) or {}
+    if payload.get("ref") != "refs/heads/main":
+        return jsonify({"ok": True, "skipped": "not main branch"}), 200
+
+    subprocess.Popen(
+        ["sudo", DEPLOY_SCRIPT],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    return jsonify({"ok": True, "deploying": True}), 202
 
 
 @main.route('/set_lang/<lang_code>')
