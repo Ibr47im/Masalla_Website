@@ -153,12 +153,33 @@ def index():
 def gallery():
     return render_template(f'{get_lang()}/gallery.html')
 
+AR_MONTHS = {
+    1: "يناير", 2: "فبراير", 3: "مارس", 4: "أبريل",
+    5: "مايو", 6: "يونيو", 7: "يوليو", 8: "أغسطس",
+    9: "سبتمبر", 10: "أكتوبر", 11: "نوفمبر", 12: "ديسمبر",
+}
+
+
 def _effective_weekday(now):
     """Menu rollover: Saturday 20:00+ shows Sunday's menu."""
     weekday = now.strftime('%A').lower()
     if weekday == 'saturday' and now.hour >= 20:
         return 'sunday'
     return weekday
+
+
+def _effective_date(now):
+    """Date matching the effective weekday (shifted on Saturday rollover)."""
+    if now.strftime('%A').lower() == 'saturday' and now.hour >= 20:
+        return now + timedelta(days=1)
+    return now
+
+
+def _format_date(d):
+    date_en = f"{d.strftime('%B')} {d.day}, {d.year}"
+    ar_digits = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
+    date_ar = f"{d.day} {AR_MONTHS[d.month]} {d.year}".translate(ar_digits)
+    return date_en, date_ar
 
 
 @main.route('/menu')
@@ -176,11 +197,14 @@ def menu():
 
     sections = _build_sections(rows, weekday)
     weekday_en, weekday_ar = WEEKDAY_LABELS[weekday]
+    date_en, date_ar = _format_date(_effective_date(now))
     return render_template(
         'menu.html',
         sections=sections,
         weekday_en=weekday_en,
         weekday_ar=weekday_ar,
+        date_en=date_en,
+        date_ar=date_ar,
     )
 
 # ---------------------------------------------------------------------------
