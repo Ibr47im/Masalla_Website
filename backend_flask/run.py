@@ -89,6 +89,12 @@ def _fetch_menu_rows():
         if not name_en and not name_ar:
             continue  # skip blank rows
 
+        # "available" column: default True when column missing or cell blank.
+        # Only explicit FALSE/false/0 excludes the row.
+        available_raw = (raw.get("available") or "").strip().upper()
+        if available_raw in ("FALSE", "0", "NO"):
+            continue
+
         day = (raw.get("day") or "").strip().lower()
         if day not in VALID_DAYS:
             raise ValueError(f"Row {i}: invalid day '{raw.get('day')}'")
