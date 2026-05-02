@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo/Masalla Small Logo.png') }}" />
+  <title>{% block title %}Portal · Masalla{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('portal.static', filename='portal.css') }}" />
+</head>
+<body class="portal-body">
+
+  {% if current_user.is_authenticated %}
+  <nav class="portal-nav">
+    <a href="{{ url_for('portal.dashboard') }}" class="portal-nav-brand">
+      <img src="{{ url_for('static', filename='logo/Masalla Small Logo.png') }}" alt="Masalla" />
+      <span>Portal</span>
+    </a>
+    <div class="portal-nav-user">
+      <span class="portal-nav-username">{{ current_user.username }}</span>
+      <span class="portal-nav-role">{{ current_user.role }}</span>
+      <a href="{{ url_for('portal.logout') }}" class="portal-nav-logout">Sign out</a>
+    </div>
+  </nav>
+  {% endif %}
+
+  <main class="portal-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="portal-flashes">
+          {% for cat, msg in messages %}
+            <div class="portal-flash portal-flash-{{ cat }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>

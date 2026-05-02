@@ -1,0 +1,270 @@
+/* ============================================================
+   PORTAL — internal delivery-note tool
+   English-only, mobile-first, isolated from public site CSS
+   ============================================================ */
+
+:root {
+  --p-ink: #0f1614;
+  --p-surface: #18211e;
+  --p-raised: #1f2a26;
+  --p-border: rgba(255, 255, 255, 0.08);
+  --p-text: #ECE7DF;
+  --p-text-dim: rgba(236, 231, 223, 0.6);
+  --p-muted: rgba(236, 231, 223, 0.4);
+  --p-accent: #C4957A;
+  --p-accent-hi: #D4B09E;
+  --p-success: #8cbfa0;
+  --p-error: #d48a8a;
+  --p-warn: #d4b78a;
+  --p-display: 'Cormorant Garamond', serif;
+  --p-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body.portal-body {
+  background: var(--p-ink);
+  color: var(--p-text);
+  font-family: var(--p-body);
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a { color: var(--p-accent); text-decoration: none; }
+a:hover { color: var(--p-accent-hi); }
+
+/* ----------------------------------------------------------
+   Top nav (visible when authenticated)
+   ---------------------------------------------------------- */
+.portal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  background: var(--p-surface);
+  border-bottom: 1px solid var(--p-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.portal-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--p-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.portal-nav-brand img { height: 28px; width: auto; display: block; }
+.portal-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.85rem;
+}
+.portal-nav-username { color: var(--p-text); }
+.portal-nav-role {
+  color: var(--p-accent);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--p-border);
+  border-radius: 999px;
+}
+.portal-nav-logout {
+  color: var(--p-text-dim);
+  font-size: 0.85rem;
+}
+.portal-nav-logout:hover { color: var(--p-text); }
+
+/* ----------------------------------------------------------
+   Main content area
+   ---------------------------------------------------------- */
+.portal-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* ----------------------------------------------------------
+   Flash messages
+   ---------------------------------------------------------- */
+.portal-flashes { margin-bottom: 1.25rem; }
+.portal-flash {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--p-border);
+  border-left-width: 3px;
+  font-size: 0.9rem;
+  background: var(--p-surface);
+}
+.portal-flash-error   { border-left-color: var(--p-error);   color: var(--p-error); }
+.portal-flash-success { border-left-color: var(--p-success); color: var(--p-success); }
+.portal-flash-info    { border-left-color: var(--p-accent);  color: var(--p-text-dim); }
+
+/* ----------------------------------------------------------
+   Login page
+   ---------------------------------------------------------- */
+.portal-login-wrap {
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.portal-login-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.portal-login-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  margin: 0 auto 1.5rem;
+  opacity: 0.9;
+}
+.portal-login-title {
+  font-family: var(--p-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.85rem;
+  margin: 0 0 0.35rem;
+  color: var(--p-text);
+}
+.portal-login-sub {
+  color: var(--p-text-dim);
+  font-size: 0.9rem;
+  margin: 0 0 1.75rem;
+}
+
+/* ----------------------------------------------------------
+   Forms
+   ---------------------------------------------------------- */
+.portal-form { display: flex; flex-direction: column; gap: 1rem; }
+.portal-field { display: block; text-align: left; }
+.portal-field > span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--p-text-dim);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.portal-field input,
+.portal-field textarea,
+.portal-field select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  background: var(--p-ink);
+  border: 1px solid var(--p-border);
+  color: var(--p-text);
+  font-family: var(--p-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.portal-field input:focus,
+.portal-field textarea:focus,
+.portal-field select:focus { border-color: var(--p-accent); }
+
+.portal-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--p-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--p-border);
+  background: transparent;
+  color: var(--p-text);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.portal-btn:hover { border-color: var(--p-accent); color: var(--p-accent); }
+.portal-btn-primary {
+  background: var(--p-accent);
+  border-color: var(--p-accent);
+  color: var(--p-ink);
+}
+.portal-btn-primary:hover {
+  background: var(--p-accent-hi);
+  border-color: var(--p-accent-hi);
+  color: var(--p-ink);
+}
+
+/* ----------------------------------------------------------
+   Dashboard
+   ---------------------------------------------------------- */
+.portal-dash-head { margin-bottom: 2.25rem; }
+.portal-dash-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--p-accent);
+  margin: 0 0 0.6rem;
+}
+.portal-dash-head h1 {
+  font-family: var(--p-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  margin: 0 0 0.5rem;
+  color: var(--p-text);
+}
+.portal-dash-sub {
+  color: var(--p-text-dim);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.portal-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.portal-card {
+  position: relative;
+  padding: 1.25rem;
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  transition: border-color 0.15s;
+}
+.portal-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--p-text);
+}
+.portal-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--p-text-dim);
+  line-height: 1.55;
+}
+.portal-card-soon { opacity: 0.65; }
+.portal-card-tag {
+  display: inline-block;
+  margin-top: 0.85rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-muted);
+  border: 1px solid var(--p-border);
+}
+
+@media (max-width: 600px) {
+  .portal-nav { padding: 0.7rem 1rem; }
+  .portal-nav-username { display: none; }
+  .portal-main { padding: 1.5rem 1rem 3rem; }
+  .portal-login-card { padding: 2rem 1.5rem; }
+}

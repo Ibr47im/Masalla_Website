@@ -344,5 +344,14 @@ def template_missing(_e):
 
 app.register_blueprint(main)
 
+# ---------------------------------------------------------------------------
+# Portal (delivery-note tool) — separate blueprint, isolated package
+# ---------------------------------------------------------------------------
+from portal.blueprint import portal_bp, init_portal  # noqa: E402
+
+init_portal(app)
+app.register_blueprint(portal_bp, url_prefix='/portal')
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -14,7 +14,17 @@
       "Bash(curl -s -X POST http://127.0.0.1:5000/menu/review -H \"Content-Type: application/json\" -d '{\"rating\": 5, \"highlights\": [\"food\", \"variety\"], \"comment\": \"Test review from CLI\", \"name\": \"Claude Test\"}')",
       "Bash(curl -s -X POST http://127.0.0.1:5000/menu/review -H \"Content-Type: application/json\" -d '{\"rating_service\": 5, \"rating_heat\": 4, \"rating_taste\": 5, \"rating_overall\": 4, \"comment\": \"Test with 4 ratings\", \"name\": \"Test User\"}')",
       "Bash(curl -s -L -X POST \"https://script.google.com/macros/s/AKfycbxDPfM48lv46UCPl4VNdSRrbcWvGFVeY14AmoiskyF2m3IlmR8NQE0aubPLVFWbfWtk/exec\" -H \"Content-Type: application/json\" -d '{\"timestamp\":\"2026-04-16T14:00:00+03:00\",\"weekday\":\"wednesday\",\"rating_service\":5,\"rating_heat\":4,\"rating_taste\":5,\"rating_overall\":4,\"comment\":\"Direct test\",\"name\":\"Test Direct\"}')",
-      "Bash(curl -s -L -X POST \"https://script.google.com/macros/s/AKfycbxDPfM48lv46UCPl4VNdSRrbcWvGFVeY14AmoiskyF2m3IlmR8NQE0aubPLVFWbfWtk/exec\" -H \"Content-Type: application/json\" -d '{\"timestamp\":\"2026-04-16T14:30:00+03:00\",\"weekday\":\"wednesday\",\"rating_service\":4,\"rating_heat\":5,\"rating_taste\":4,\"rating_overall\":5,\"comment\":\"Format test\",\"name\":\"Test\"}')"
+      "Bash(curl -s -L -X POST \"https://script.google.com/macros/s/AKfycbxDPfM48lv46UCPl4VNdSRrbcWvGFVeY14AmoiskyF2m3IlmR8NQE0aubPLVFWbfWtk/exec\" -H \"Content-Type: application/json\" -d '{\"timestamp\":\"2026-04-16T14:30:00+03:00\",\"weekday\":\"wednesday\",\"rating_service\":4,\"rating_heat\":5,\"rating_taste\":4,\"rating_overall\":5,\"comment\":\"Format test\",\"name\":\"Test\"}')",
+      "Bash(pip install *)",
+      "Bash(PORTAL_DB_PATH=./portal_dev.db python -m portal.cli init-db)",
+      "Bash(PORTAL_DB_PATH=./portal_dev.db python -m portal.cli create-admin --username ahmed --password testpass123)",
+      "Bash(PORTAL_DB_PATH=./portal_dev.db python run.py)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://127.0.0.1:5000/portal/login)",
+      "Bash(curl -s -c /tmp/cookies.txt -b /tmp/cookies.txt -X POST http://127.0.0.1:5000/portal/login -d \"username=ahmed&password=testpass123\" -w \"POST status: %{http_code}\\\\nRedirect: %{redirect_url}\\\\n\" -o /dev/null)",
+      "Bash(curl -s -b /tmp/cookies.txt http://127.0.0.1:5000/portal/dashboard -w \"\\\\nDashboard status: %{http_code}\\\\n\")",
+      "Bash(rm -f /tmp/cookies2.txt)",
+      "Bash(curl -s -c /tmp/cookies2.txt -X POST http://127.0.0.1:5000/portal/login -d \"username=ahmed&password=wrongpass\" -w \"Wrong-pw status: %{http_code}\\\\n\" -o /dev/null)",
+      "Bash(curl -s -b /tmp/cookies2.txt http://127.0.0.1:5000/portal/dashboard -w \"Dashboard \\(no auth\\) status: %{http_code}\\\\nFinal URL: %{url_effective}\\\\n\" -L -o /dev/null)"
     ]
   }
 }

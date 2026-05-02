@@ -1,0 +1,26 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}Dashboard · Client{% endblock %}
+
+{% block content %}
+<div class="portal-dash">
+  <header class="portal-dash-head">
+    <p class="portal-dash-eyebrow">Client{% if user.floor %} · Floor {{ user.floor }}{% endif %}</p>
+    <h1>Welcome, {{ user.username }}.</h1>
+    <p class="portal-dash-sub">You'll see and confirm deliveries here once Session 3 ships.</p>
+  </header>
+
+  <section class="portal-card-grid">
+    <div class="portal-card portal-card-soon">
+      <h3>Pending Deliveries</h3>
+      <p>Notes awaiting your confirmation.</p>
+      <span class="portal-card-tag">Session 3</span>
+    </div>
+    <div class="portal-card portal-card-soon">
+      <h3>History</h3>
+      <p>All confirmed deliveries with PDF download.</p>
+      <span class="portal-card-tag">Session 3 / 4</span>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}Dashboard · Admin{% endblock %}
+
+{% block content %}
+<div class="portal-dash">
+  <header class="portal-dash-head">
+    <p class="portal-dash-eyebrow">Admin</p>
+    <h1>Welcome, {{ user.username }}.</h1>
+    <p class="portal-dash-sub">You have full access. More controls land in the next session.</p>
+  </header>
+
+  <section class="portal-card-grid">
+    <div class="portal-card portal-card-soon">
+      <h3>Manage Users</h3>
+      <p>Create staff and client accounts, assign floors, change roles.</p>
+      <span class="portal-card-tag">Session 2</span>
+    </div>
+    <div class="portal-card portal-card-soon">
+      <h3>Manage Clients</h3>
+      <p>Add or update client organizations.</p>
+      <span class="portal-card-tag">Session 2</span>
+    </div>
+    <div class="portal-card portal-card-soon">
+      <h3>Delivery Notes</h3>
+      <p>View, edit, void, or confirm any note.</p>
+      <span class="portal-card-tag">Session 3</span>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}Sign In · Portal{% endblock %}
+
+{% block content %}
+<div class="portal-login-wrap">
+  <div class="portal-login-card">
+    <img class="portal-login-logo" src="{{ url_for('static', filename='logo/Masalla full logo white.png') }}" alt="Masalla" />
+    <h1 class="portal-login-title">Delivery Portal</h1>
+    <p class="portal-login-sub">Sign in to continue</p>
+
+    <form method="POST" action="{{ url_for('portal.login') }}" class="portal-form">
+      <label class="portal-field">
+        <span>Username</span>
+        <input type="text" name="username" autocomplete="username" required autofocus />
+      </label>
+      <label class="portal-field">
+        <span>Password</span>
+        <input type="password" name="password" autocomplete="current-password" required />
+      </label>
+      <button type="submit" class="portal-btn portal-btn-primary">Sign In</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
