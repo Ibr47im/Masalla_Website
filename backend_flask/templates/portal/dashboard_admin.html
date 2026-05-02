@@ -11,16 +11,14 @@
   </header>
 
   <section class="portal-card-grid">
-    <div class="portal-card portal-card-soon">
+    <a href="{{ url_for('portal.admin.users_list') }}" class="portal-card portal-card-link">
       <h3>Manage Users</h3>
       <p>Create staff and client accounts, assign floors, change roles.</p>
-      <span class="portal-card-tag">Session 2</span>
-    </div>
-    <div class="portal-card portal-card-soon">
+    </a>
+    <a href="{{ url_for('portal.admin.clients_list') }}" class="portal-card portal-card-link">
       <h3>Manage Clients</h3>
       <p>Add or update client organizations.</p>
-      <span class="portal-card-tag">Session 2</span>
-    </div>
+    </a>
     <div class="portal-card portal-card-soon">
       <h3>Delivery Notes</h3>
       <p>View, edit, void, or confirm any note.</p>

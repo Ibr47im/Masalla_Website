@@ -1,0 +1,33 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}{{ 'New Client' if mode == 'new' else 'Edit Client' }} · Admin{% endblock %}
+
+{% block content %}
+<div class="portal-dash-head">
+  <p class="portal-dash-eyebrow">Admin · Clients</p>
+  <h1>{{ 'New Client' if mode == 'new' else 'Edit Client' }}</h1>
+</div>
+
+<form method="POST" class="portal-form portal-form-card">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+  <label class="portal-field">
+    <span>Name</span>
+    <input type="text" name="name" value="{{ form_data.name or '' }}" required maxlength="200" />
+  </label>
+
+  {% if mode == 'edit' %}
+  <label class="portal-checkbox">
+    <input type="checkbox" name="active" {% if form_data.active %}checked{% endif %} />
+    <span>Active</span>
+  </label>
+  {% endif %}
+
+  <div class="portal-form-actions">
+    <a href="{{ url_for('portal.admin.clients_list') }}" class="portal-btn">Cancel</a>
+    <button type="submit" class="portal-btn portal-btn-primary">
+      {{ 'Create Client' if mode == 'new' else 'Save Changes' }}
+    </button>
+  </div>
+</form>
+{% endblock %}

@@ -8,6 +8,8 @@ from flask_login import (
 
 from . import db
 from .auth import User, load_user_by_id, load_user_by_username, verify_password
+from .csrf import get_token as csrf_token, validate_request as csrf_validate
+from .admin import admin_bp
 
 
 portal_bp = Blueprint(
@@ -35,6 +37,12 @@ def init_portal(app):
     login_manager.init_app(app)
     app.teardown_appcontext(db.close_db)
 
+    # CSRF token available in every Jinja template as csrf_token().
+    app.jinja_env.globals["csrf_token"] = csrf_token
+
+    # Mount admin sub-blueprint under the portal blueprint.
+    portal_bp.register_blueprint(admin_bp, url_prefix="/admin")
+
     # Hardening — applies to the whole app session cookie.
     app.config.setdefault("SESSION_COOKIE_HTTPONLY", True)
     app.config.setdefault("SESSION_COOKIE_SAMESITE", "Lax")
@@ -59,6 +67,7 @@ def login():
         return redirect(url_for("portal.dashboard"))
 
     if request.method == "POST":
+        csrf_validate()
         username = (request.form.get("username") or "").strip()
         password = request.form.get("password") or ""
 

@@ -1,0 +1,68 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}Users · Admin{% endblock %}
+
+{% block content %}
+<div class="portal-dash-head">
+  <p class="portal-dash-eyebrow">Admin</p>
+  <h1>Users</h1>
+  <p class="portal-dash-sub">Create, edit, or deactivate accounts.</p>
+</div>
+
+<div class="portal-actions-bar">
+  <a href="{{ url_for('portal.admin.users_list') }}" class="portal-btn-link active">Users</a>
+  <a href="{{ url_for('portal.admin.clients_list') }}" class="portal-btn-link">Clients</a>
+  <a href="{{ url_for('portal.admin.user_new') }}" class="portal-btn portal-btn-primary portal-btn-sm">+ New User</a>
+</div>
+
+{% if users %}
+<div class="portal-table-wrap">
+  <table class="portal-table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Floor</th>
+        <th>Client</th>
+        <th>Status</th>
+        <th class="portal-th-actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in users %}
+      <tr class="{% if not u.active %}portal-tr-dim{% endif %}">
+        <td>
+          <a href="{{ url_for('portal.admin.user_edit', user_id=u.id) }}">
+            {{ u.username }}
+          </a>
+        </td>
+        <td><span class="portal-badge portal-badge-{{ u.role }}">{{ u.role }}</span></td>
+        <td>{{ u.floor if u.floor is not none else '—' }}</td>
+        <td>{{ u.client_name or '—' }}</td>
+        <td>
+          {% if u.active %}
+            <span class="portal-status portal-status-on">Active</span>
+          {% else %}
+            <span class="portal-status portal-status-off">Disabled</span>
+          {% endif %}
+        </td>
+        <td class="portal-td-actions">
+          <a href="{{ url_for('portal.admin.user_edit', user_id=u.id) }}" class="portal-btn portal-btn-sm">Edit</a>
+          {% if u.id != current_user.id %}
+          <form method="POST" action="{{ url_for('portal.admin.user_toggle', user_id=u.id) }}" class="portal-inline-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <button type="submit" class="portal-btn portal-btn-sm">
+              {{ 'Disable' if u.active else 'Enable' }}
+            </button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="portal-empty">No users yet.</p>
+{% endif %}
+{% endblock %}

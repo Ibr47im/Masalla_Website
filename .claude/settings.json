@@ -24,7 +24,12 @@
       "Bash(curl -s -b /tmp/cookies.txt http://127.0.0.1:5000/portal/dashboard -w \"\\\\nDashboard status: %{http_code}\\\\n\")",
       "Bash(rm -f /tmp/cookies2.txt)",
       "Bash(curl -s -c /tmp/cookies2.txt -X POST http://127.0.0.1:5000/portal/login -d \"username=ahmed&password=wrongpass\" -w \"Wrong-pw status: %{http_code}\\\\n\" -o /dev/null)",
-      "Bash(curl -s -b /tmp/cookies2.txt http://127.0.0.1:5000/portal/dashboard -w \"Dashboard \\(no auth\\) status: %{http_code}\\\\nFinal URL: %{url_effective}\\\\n\" -L -o /dev/null)"
+      "Bash(curl -s -b /tmp/cookies2.txt http://127.0.0.1:5000/portal/dashboard -w \"Dashboard \\(no auth\\) status: %{http_code}\\\\nFinal URL: %{url_effective}\\\\n\" -L -o /dev/null)",
+      "Bash(curl -s -b /tmp/c.txt -X POST http://127.0.0.1:5000/portal/admin/users/new -d username=evil -d role=admin -d password=evilpass1 -w 'Bad CSRF: %{http_code}\\\\n' -o /dev/null)",
+      "Bash(curl -s -b /tmp/c.txt -X POST http://127.0.0.1:5000/portal/admin/users/new -d csrf_token=wrong -d username=evil -d role=admin -d password=evilpass1 -w 'Wrong CSRF: %{http_code}\\\\n' -o /dev/null)",
+      "Bash(rm -f /tmp/staff.txt)",
+      "Bash(curl -s -c /tmp/staff.txt http://127.0.0.1:5000/portal/login)",
+      "Bash(export LC_ALL=C.UTF-8)"
     ]
   }
 }

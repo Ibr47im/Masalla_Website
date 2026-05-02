@@ -10,6 +10,7 @@
     <p class="portal-login-sub">Sign in to continue</p>
 
     <form method="POST" action="{{ url_for('portal.login') }}" class="portal-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <label class="portal-field">
         <span>Username</span>
         <input type="text" name="username" autocomplete="username" required autofocus />

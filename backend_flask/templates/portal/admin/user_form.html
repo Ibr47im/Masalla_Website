@@ -1,0 +1,79 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}{{ 'New User' if mode == 'new' else 'Edit User' }} · Admin{% endblock %}
+
+{% block content %}
+<div class="portal-dash-head">
+  <p class="portal-dash-eyebrow">Admin · Users</p>
+  <h1>{{ 'New User' if mode == 'new' else 'Edit User' }}</h1>
+</div>
+
+<form method="POST" class="portal-form portal-form-card">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+  <label class="portal-field">
+    <span>Username</span>
+    <input type="text" name="username" value="{{ form_data.username or '' }}"
+           required autocomplete="off" />
+  </label>
+
+  <label class="portal-field">
+    <span>Role</span>
+    <select name="role" id="role-select" required>
+      {% for r in ['admin', 'staff', 'client'] %}
+      <option value="{{ r }}" {% if form_data.role == r %}selected{% endif %}>{{ r|capitalize }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <label class="portal-field" id="field-floor">
+    <span>Floor (number)</span>
+    <input type="number" name="floor" min="0"
+           value="{{ form_data.floor if form_data.floor is not none else '' }}" />
+  </label>
+
+  <label class="portal-field" id="field-client">
+    <span>Client (required if role = client)</span>
+    <select name="client_id">
+      <option value="">— None —</option>
+      {% for c in clients %}
+      <option value="{{ c.id }}" {% if form_data.client_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <label class="portal-field">
+    <span>{{ 'Password' if mode == 'new' else 'New password (leave blank to keep current)' }}</span>
+    <input type="password" name="password" autocomplete="new-password"
+           {% if mode == 'new' %}required{% endif %} />
+  </label>
+
+  <label class="portal-checkbox">
+    <input type="checkbox" name="active" {% if form_data.active or mode == 'new' %}checked{% endif %} />
+    <span>Active</span>
+  </label>
+
+  <div class="portal-form-actions">
+    <a href="{{ url_for('portal.admin.users_list') }}" class="portal-btn">Cancel</a>
+    <button type="submit" class="portal-btn portal-btn-primary">
+      {{ 'Create User' if mode == 'new' else 'Save Changes' }}
+    </button>
+  </div>
+</form>
+
+<script>
+  // Show/hide floor + client fields based on role
+  (function () {
+    var sel = document.getElementById('role-select');
+    var floorField = document.getElementById('field-floor');
+    var clientField = document.getElementById('field-client');
+    function update() {
+      var role = sel.value;
+      floorField.style.display = (role === 'admin') ? 'none' : '';
+      clientField.style.display = (role === 'client') ? '' : 'none';
+    }
+    sel.addEventListener('change', update);
+    update();
+  })();
+</script>
+{% endblock %}
