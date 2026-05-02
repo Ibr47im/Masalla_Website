@@ -10,6 +10,7 @@ from . import db
 from .auth import User, load_user_by_id, load_user_by_username, verify_password
 from .csrf import get_token as csrf_token, validate_request as csrf_validate
 from .admin import admin_bp
+from .notes import notes_bp
 
 
 portal_bp = Blueprint(
@@ -40,8 +41,9 @@ def init_portal(app):
     # CSRF token available in every Jinja template as csrf_token().
     app.jinja_env.globals["csrf_token"] = csrf_token
 
-    # Mount admin sub-blueprint under the portal blueprint.
+    # Mount sub-blueprints under the portal blueprint.
     portal_bp.register_blueprint(admin_bp, url_prefix="/admin")
+    portal_bp.register_blueprint(notes_bp, url_prefix="")
 
     # Hardening — applies to the whole app session cookie.
     app.config.setdefault("SESSION_COOKIE_HTTPONLY", True)

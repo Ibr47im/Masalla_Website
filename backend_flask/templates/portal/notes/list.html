@@ -1,0 +1,54 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}Delivery Notes · Portal{% endblock %}
+
+{% block content %}
+<div class="portal-dash-head">
+  <p class="portal-dash-eyebrow">{{ current_user.role|capitalize }}{% if current_user.floor %} · Floor {{ current_user.floor }}{% endif %}</p>
+  <h1>Delivery Notes</h1>
+</div>
+
+<div class="portal-actions-bar">
+  <a href="{{ url_for('portal.dashboard') }}" class="portal-btn-link">Dashboard</a>
+  <a href="{{ url_for('portal.notes.notes_list') }}" class="portal-btn-link active">Notes</a>
+  {% if current_user.role in ('admin', 'staff') %}
+  <a href="{{ url_for('portal.notes.note_new') }}" class="portal-btn portal-btn-primary portal-btn-sm">+ New Note</a>
+  {% endif %}
+</div>
+
+{% if notes %}
+<div class="portal-table-wrap">
+  <table class="portal-table">
+    <thead>
+      <tr>
+        <th>Note #</th>
+        <th>Floor</th>
+        <th>Client</th>
+        <th>Created by</th>
+        <th>Created</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for n in notes %}
+      <tr class="{% if n.status == 'voided' %}portal-tr-dim{% endif %}">
+        <td><a href="{{ url_for('portal.notes.note_view', note_id=n.id) }}">{{ n.note_number }}</a></td>
+        <td>Floor {{ n.floor }}</td>
+        <td>{{ n.client_name }}</td>
+        <td>{{ n.created_by_name }}</td>
+        <td>{{ n.created_at[:16] }}</td>
+        <td><span class="portal-status-pill portal-status-{{ n.status }}">{{ n.status }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="portal-empty">
+  No delivery notes yet.
+  {% if current_user.role in ('admin', 'staff') %}
+  <a href="{{ url_for('portal.notes.note_new') }}">Create the first one →</a>
+  {% endif %}
+</p>
+{% endif %}
+{% endblock %}

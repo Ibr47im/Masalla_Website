@@ -1,0 +1,118 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}{{ note.note_number }} · Portal{% endblock %}
+
+{% block content %}
+<div class="portal-dash-head">
+  <p class="portal-dash-eyebrow">
+    Floor {{ note.floor }} · {{ note.client_name }}
+  </p>
+  <h1>
+    {{ note.note_number }}
+    <span class="portal-status-pill portal-status-{{ note.status }}">{{ note.status }}</span>
+  </h1>
+  <p class="portal-dash-sub">
+    Created by {{ note.created_by_name }} on {{ note.created_at[:16] }}
+  </p>
+</div>
+
+{% if note.status == 'voided' %}
+<div class="note-banner note-banner-voided">
+  <strong>Voided</strong> by {{ note.voided_by_name }} on {{ note.voided_at[:16] }}.
+  <br><span class="muted">Reason:</span> {{ note.voided_reason }}
+</div>
+{% elif note.status == 'confirmed' %}
+<div class="note-banner note-banner-confirmed">
+  <strong>Confirmed</strong> by {{ note.confirmed_by_name }} on {{ note.confirmed_at[:16] }}.
+  {% if has_discrepancy %}
+  <br><strong class="warn">⚠ Discrepancies present</strong> — see highlighted rows.
+  {% endif %}
+</div>
+{% endif %}
+
+{% if note.notes %}
+<p class="note-internal">
+  <strong>Internal notes:</strong> {{ note.notes }}
+</p>
+{% endif %}
+
+{% if can_confirm %}
+<form method="POST" action="{{ url_for('portal.notes.note_confirm', note_id=note.id) }}" class="portal-form" id="confirm-form">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+  <div class="note-items-table">
+    <div class="note-items-row note-items-header">
+      <div class="cell-name">Item</div>
+      <div class="cell-qty">Sent</div>
+      <div class="cell-qty">Received (re-type)</div>
+    </div>
+    {% for it in items %}
+    <div class="note-items-row">
+      <div class="cell-name">
+        <div>{{ it.name_en }}</div>
+        {% if it.name_ar %}<div class="cell-name-ar" dir="rtl">{{ it.name_ar }}</div>{% endif %}
+      </div>
+      <div class="cell-qty cell-qty-static">{{ it.staff_quantity }}</div>
+      <div class="cell-qty">
+        <input type="number" name="client_qty_{{ it.id }}" min="0" required />
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <label class="portal-field" style="margin-top:1.5rem;">
+    <span>Your name (for the record)</span>
+    <input type="text" name="confirmed_name" required maxlength="100" autocomplete="name" />
+  </label>
+
+  <div class="portal-form-actions">
+    <a href="{{ url_for('portal.notes.notes_list') }}" class="portal-btn">Back</a>
+    <button type="submit" class="portal-btn portal-btn-primary">Confirm Delivery</button>
+  </div>
+</form>
+
+{% else %}
+<div class="note-items-table">
+  <div class="note-items-row note-items-header">
+    <div class="cell-name">Item</div>
+    <div class="cell-qty">Sent</div>
+    <div class="cell-qty">Received</div>
+  </div>
+  {% for it in items %}
+  {% set mismatch = it.client_quantity is not none and it.client_quantity != it.staff_quantity %}
+  <div class="note-items-row {% if mismatch %}note-row-mismatch{% endif %}">
+    <div class="cell-name">
+      <div>{{ it.name_en }}</div>
+      {% if it.name_ar %}<div class="cell-name-ar" dir="rtl">{{ it.name_ar }}</div>{% endif %}
+    </div>
+    <div class="cell-qty cell-qty-static">{{ it.staff_quantity }}</div>
+    <div class="cell-qty cell-qty-static">
+      {% if it.client_quantity is none %}—{% else %}{{ it.client_quantity }}{% if mismatch %} ⚠{% endif %}{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if can_void %}
+<details class="note-void-section">
+  <summary>Void this note</summary>
+  <form method="POST" action="{{ url_for('portal.notes.note_void', note_id=note.id) }}" class="portal-form" style="margin-top:1rem;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <label class="portal-field">
+      <span>Reason (required)</span>
+      <textarea name="reason" rows="2" required maxlength="500"></textarea>
+    </label>
+    <div class="portal-form-actions">
+      <button type="submit" class="portal-btn portal-btn-danger">Void Note</button>
+    </div>
+  </form>
+</details>
+{% endif %}
+
+{% if not can_confirm %}
+<div class="portal-form-actions" style="margin-top:1.5rem;">
+  <a href="{{ url_for('portal.notes.notes_list') }}" class="portal-btn">Back to list</a>
+</div>
+{% endif %}
+{% endblock %}

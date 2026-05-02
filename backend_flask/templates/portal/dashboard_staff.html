@@ -7,20 +7,17 @@
   <header class="portal-dash-head">
     <p class="portal-dash-eyebrow">Staff{% if user.floor %} · Floor {{ user.floor }}{% endif %}</p>
     <h1>Welcome, {{ user.username }}.</h1>
-    <p class="portal-dash-sub">Note creation lands in Session 3.</p>
   </header>
 
   <section class="portal-card-grid">
-    <div class="portal-card portal-card-soon">
-      <h3>New Delivery Note</h3>
-      <p>Pre-fill from today's menu, set quantities, save.</p>
-      <span class="portal-card-tag">Session 3</span>
-    </div>
-    <div class="portal-card portal-card-soon">
+    <a href="{{ url_for('portal.notes.note_new') }}" class="portal-card portal-card-link">
+      <h3>+ New Delivery Note</h3>
+      <p>Pre-fill from today's menu, set quantities, send to client.</p>
+    </a>
+    <a href="{{ url_for('portal.notes.notes_list') }}" class="portal-card portal-card-link">
       <h3>My Notes</h3>
-      <p>See notes you've created; pending vs confirmed.</p>
-      <span class="portal-card-tag">Session 3</span>
-    </div>
+      <p>Your created notes — pending and confirmed.</p>
+    </a>
   </section>
 </div>
 {% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'portal/base_portal.html' %}
+
+{% block title %}New Delivery Note · Portal{% endblock %}
+
+{% block content %}
+<div class="portal-dash-head">
+  <p class="portal-dash-eyebrow">{{ current_user.role|capitalize }}</p>
+  <h1>New Delivery Note</h1>
+  <p class="portal-dash-sub">Pre-fill from today's menu, or add items manually.</p>
+</div>
+
+<form method="POST" class="portal-form">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+  <div class="portal-form-grid-2">
+    <label class="portal-field">
+      <span>Floor</span>
+      <input type="number" name="floor" min="1"
+             value="{{ form_data.floor or '' }}" required />
+    </label>
+
+    <label class="portal-field">
+      <span>Client</span>
+      <select name="client_id" required>
+        {% for c in clients %}
+        <option value="{{ c.id }}" {% if form_data.client_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </div>
+
+  <div class="note-items-head">
+    <h3>Items</h3>
+    <div class="note-items-actions">
+      <button type="button" id="btn-import-menu" class="portal-btn portal-btn-sm">
+        Import Today's Menu
+      </button>
+      <button type="button" id="btn-add-row" class="portal-btn portal-btn-sm">
+        + Add Row
+      </button>
+    </div>
+  </div>
+
+  <p class="note-import-status" id="import-status"></p>
+
+  <div class="note-items-table note-items-table-edit">
+    <div class="note-items-row note-items-header">
+      <div class="cell-name">Item (EN)</div>
+      <div class="cell-name">Item (AR)</div>
+      <div class="cell-qty">Quantity</div>
+      <div class="cell-rm"></div>
+    </div>
+    <div id="items-body">
+      <!-- Rows injected here -->
+    </div>
+  </div>
+
+  <label class="portal-field" style="margin-top:1.25rem;">
+    <span>Internal notes (optional)</span>
+    <textarea name="notes" rows="2" maxlength="500">{{ form_data.notes or '' }}</textarea>
+  </label>
+
+  <div class="portal-form-actions">
+    <a href="{{ url_for('portal.notes.notes_list') }}" class="portal-btn">Cancel</a>
+    <button type="submit" class="portal-btn portal-btn-primary">Save & Send to Client</button>
+  </div>
+</form>
+
+<template id="row-template">
+  <div class="note-items-row">
+    <div class="cell-name"><input type="text" name="name_en" required maxlength="200" /></div>
+    <div class="cell-name"><input type="text" name="name_ar" maxlength="200" dir="rtl" /></div>
+    <div class="cell-qty"><input type="number" name="qty" min="0" value="0" required /></div>
+    <div class="cell-rm"><button type="button" class="btn-rm-row" aria-label="Remove">&times;</button></div>
+  </div>
+</template>
+
+<script>
+(function () {
+  var body = document.getElementById('items-body');
+  var template = document.getElementById('row-template');
+  var status = document.getElementById('import-status');
+
+  function addRow(data) {
+    var node = template.content.firstElementChild.cloneNode(true);
+    if (data) {
+      node.querySelector('input[name="name_en"]').value = data.name_en || '';
+      node.querySelector('input[name="name_ar"]').value = data.name_ar || '';
+    }
+    body.appendChild(node);
+  }
+
+  body.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-rm-row')) {
+      e.target.closest('.note-items-row').remove();
+    }
+  });
+
+  document.getElementById('btn-add-row').addEventListener('click', function () { addRow(); });
+
+  document.getElementById('btn-import-menu').addEventListener('click', function () {
+    status.textContent = 'Loading…';
+    status.className = 'note-import-status';
+    fetch('{{ url_for("portal.notes.api_menu_today") }}')
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, data: j }; }); })
+      .then(function (res) {
+        if (!res.ok) {
+          status.textContent = res.data.error || 'Failed to load menu.';
+          status.className = 'note-import-status error';
+          return;
+        }
+        body.innerHTML = '';
+        res.data.items.forEach(function (it) { addRow(it); });
+        status.textContent = 'Imported ' + res.data.items.length + ' items from ' + res.data.weekday + "'s menu. Set quantities below.";
+        status.className = 'note-import-status success';
+      })
+      .catch(function () {
+        status.textContent = 'Network error loading menu.';
+        status.className = 'note-import-status error';
+      });
+  });
+
+  // Start with one empty row
+  addRow();
+})();
+</script>
+{% endblock %}

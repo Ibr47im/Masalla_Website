@@ -19,11 +19,14 @@
       <h3>Manage Clients</h3>
       <p>Add or update client organizations.</p>
     </a>
-    <div class="portal-card portal-card-soon">
+    <a href="{{ url_for('portal.notes.notes_list') }}" class="portal-card portal-card-link">
       <h3>Delivery Notes</h3>
-      <p>View, edit, void, or confirm any note.</p>
-      <span class="portal-card-tag">Session 3</span>
-    </div>
+      <p>View, confirm, or void any note across all floors.</p>
+    </a>
+    <a href="{{ url_for('portal.notes.note_new') }}" class="portal-card portal-card-link">
+      <h3>+ New Note</h3>
+      <p>Create a delivery note on behalf of any floor.</p>
+    </a>
   </section>
 </div>
 {% endblock %}

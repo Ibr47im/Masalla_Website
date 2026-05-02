@@ -29,7 +29,10 @@
       "Bash(curl -s -b /tmp/c.txt -X POST http://127.0.0.1:5000/portal/admin/users/new -d csrf_token=wrong -d username=evil -d role=admin -d password=evilpass1 -w 'Wrong CSRF: %{http_code}\\\\n' -o /dev/null)",
       "Bash(rm -f /tmp/staff.txt)",
       "Bash(curl -s -c /tmp/staff.txt http://127.0.0.1:5000/portal/login)",
-      "Bash(export LC_ALL=C.UTF-8)"
+      "Bash(export LC_ALL=C.UTF-8)",
+      "Bash(rm -f /tmp/admin.txt /tmp/staff.txt /tmp/client.txt)",
+      "Bash(curl -s -c /tmp/admin.txt http://127.0.0.1:5000/portal/login)",
+      "Bash(curl -s -b /tmp/client.txt http://127.0.0.1:5000/portal/notes)"
     ]
   }
 }
